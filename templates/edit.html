@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}编辑{% endblock %}
+{% block page %}
+
+<div class="alert alert-danger">警告!!请仅修改中文或者数字部分, <>内内容不要修改, 同时不要删除和修改任何空位符号!</div>
+<div class="alert alert-success">对于需要替换的图片, 请在任意图床(例如微博)上传该图片并在对应的img标签内修改链接</div>
+<form role="form"  method=post enctype=multipart/form-data>
+
+<div class="form-group">
+<label for="name">题目编号</label>
+<textarea class="form-control" rows="1" name="Id" readonly>{{ question.id }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">资料</label>
+<textarea class="form-control" rows="4" name="Means">{{ question.Means }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">题目</label>
+<textarea class="form-control" rows="3" name="Title">{{ question.Title }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">答案</label>
+<textarea class="form-control" rows="3" name="Answers">{{ question.Answers }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">正确答案</label>
+<textarea class="form-control" rows="1" name="CAnswers">{{ question.CAnswers }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">分析</label>
+<textarea class="form-control" rows="1" name="Statistics">{{ question.Statistics }}</textarea>
+</div>
+<div class="form-group">
+<label for="name">解析</label>
+<textarea class="form-control" rows="4" name="Analysis">{{ question.Analysis }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">考点</label>
+<textarea class="form-control" rows="1" name="Point">{{ question.Point }}</textarea>
+</div>
+
+<div class="form-group">
+<label for="name">来源</label>
+<textarea class="form-control" rows="1" name="Source">{{ question.Source }}</textarea>
+</div>
+<button type="submit" class="btn btn-default" >确认修改</button>
+</form>
+
+{% endblock %}

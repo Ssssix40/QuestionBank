@@ -1,0 +1,34 @@
+{% extends 'bootstrap/base.html' %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% block content %}
+{{nav.top.render()}}
+<body style="margin:0px 50px">
+{% block seacherbar %}
+
+{% endblock %}
+{% for question in questions %}
+    {{ question.Means|safe }}
+    <br />
+    {{ question.Title|safe }}
+    <br />
+    {{ question.Answers|safe }}
+    {{ question.CAnswers|safe }}
+    <br />
+    分析: {{ question.Statistics|safe }}
+    <br />
+    解析: {{ question.Analysis|safe }}
+    <br />
+    考点: {{ question.Point|safe }}
+    <br />
+    来源: {{ question.Source|safe }}
+    <br />
+    <div>
+        <button class="btn btn-default" ><a href="{{ url_for('edit', questionID = question.id) }}" target="_blank">编辑</a></button>
+    </div>
+    <hr /><br />
+{% endfor %}
+{% block page %}
+
+{% endblock %}
+</body>
+{% endblock %}

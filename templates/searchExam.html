@@ -1,0 +1,7 @@
+{% extends 'search.html' %}
+
+{% block download %}
+<button  class="btn btn-default" ><a href="{{ url_for('download', examName=examName) }}">下载{{examName}}</a></button>
+
+{% endblock %}
+
