@@ -25,7 +25,7 @@ nav.init_app(app)
 
 
 class Questions(db.Model):
-    __tablename__ = 'Questions'
+    __tablename__ = 'sQuestions'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Means = db.Column(db.Text)
     Title = db.Column(db.String(2500))
@@ -48,6 +48,17 @@ def questionsSort(questions, title):
     newQuestions = []
     for i in sorted(questionsDict):
         newQuestions.append(questionsDict[i])
+    return newQuestions
+
+
+def questionsDedup(questions):
+    sourceList = []
+    newQuestions = []
+    for i in questions:
+        if i.Source not in sourceList:
+            newQuestions.append(i)
+            sourceList.append(i.Source)
+
     return newQuestions
 
 
@@ -78,6 +89,7 @@ def search(catage, keys):
         elif catage == "2":
             questions = Questions.query.filter(
                 Questions.Point.contains(keys)).all()
+        questions = questionsDedup(questions)
         page = request.args.get(get_page_parameter(), type=int, default=1)
         search = False
         total = len(questions)
